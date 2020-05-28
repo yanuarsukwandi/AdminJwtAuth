@@ -87,35 +87,16 @@
     </v-app-bar>
 
     <v-content>
-      <v-container class="fill-height">
-        <v-row
-          justify="center"
-          align="center"
-        >
-          <v-col class="shrink">
-            <v-tooltip right>
-              <template v-slot:activator="{ on }">
-                <v-btn
-                  :href="source"
-                  icon
-                  large
-                  target="_blank"
-                  v-on="on"
-                >
-                  <v-icon large>mdi-code-tags</v-icon>
-                </v-btn>
-              </template>
-              <span>Source</span>
-            </v-tooltip>
-          </v-col>
-        </v-row>
-      </v-container>
+
+         <router-view></router-view>
+
     </v-content>
   </v-app>
 </template>
 
 <script>
   export default {
+    //name : 'main-app',
     props: {
       source: String,
     },

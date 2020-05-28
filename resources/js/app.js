@@ -9,8 +9,21 @@ require('./bootstrap');
 import Vue from 'vue';
 window.Vue = require('vue');
 import Vuetify from "vuetify";
+import VueRouter from 'vue-router';
+import {routes} from './routes';
+import {Form, HasError, AlertError} from 'vform';
+window.Form = Form
 
+
+Vue.component(HasError.name, HasError)
+Vue.component(AlertError.name, AlertError)
 Vue.use(Vuetify);
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+    routes,
+    mode : 'history'
+})
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -32,5 +45,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#admin',
+    router,
     vuetify : new Vuetify(),
 });
