@@ -1,6 +1,8 @@
 import {getLocalUser} from './helpers/auth';
 import Vue from 'vue';
 import Vuex from 'vuex';
+import Axios from 'axios';
+import VueRouter from 'vue-router';
 
 Vue.use(Vuex);
 
@@ -8,11 +10,15 @@ Vue.use(Vuex);
 export default new Vuex.Store ({
     state:{
         currentUser : '',
-        auth_error : null
+        auth_error : null,
+        posts:[]
     },
     getters:{
         currentUser(state){
             return state.currentUser;
+        },
+        posts(state){
+            return state.posts;
         }
     },
     mutations:{
@@ -29,11 +35,24 @@ export default new Vuex.Store ({
         logout(state){
             localStorage.removeItem('user')
             state.currentUser=null
+        },
+        updatePosts(state,payload){
+            state.posts = payload;
         }
     },
     actions:{
         login(context){
             context.commit('login')
+        },
+        getPosts(context){
+            Axios.get('/api/posts')
+            .then((result)=>{
+                context.commit('updatePosts', result.data.posts)
+            }).catch((err)=>{
+                if(err.response.status == 401){
+                    context.commit('logout');
+                    router.push('/admin/login')                }
+            });
         }
     }
 })

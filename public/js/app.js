@@ -90476,6 +90476,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+
+
 
 
 
@@ -90483,11 +90488,15 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
   state: {
     currentUser: '',
-    auth_error: null
+    auth_error: null,
+    posts: []
   },
   getters: {
     currentUser: function currentUser(state) {
       return state.currentUser;
+    },
+    posts: function posts(state) {
+      return state.posts;
     }
   },
   mutations: {
@@ -90506,11 +90515,24 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
     logout: function logout(state) {
       localStorage.removeItem('user');
       state.currentUser = null;
+    },
+    updatePosts: function updatePosts(state, payload) {
+      state.posts = payload;
     }
   },
   actions: {
     login: function login(context) {
       context.commit('login');
+    },
+    getPosts: function getPosts(context) {
+      axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/posts').then(function (result) {
+        context.commit('updatePosts', result.data.posts);
+      })["catch"](function (err) {
+        if (err.response.status == 401) {
+          context.commit('logout');
+          router.push('/admin/login');
+        }
+      });
     }
   }
 }));

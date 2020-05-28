@@ -31,3 +31,7 @@ Route::group([
     Route::post('me', 'AuthController@me');
 
 });
+
+Route::group(['middleware' => 'auth'], function ($router) {
+    Route::get('posts', 'Admin\PostController@index');  
+});
