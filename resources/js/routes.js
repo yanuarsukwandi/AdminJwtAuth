@@ -1,3 +1,4 @@
+
 import Login from './components/Login.vue';
 import Home from './components/Home.vue';
 export const routes =
@@ -9,5 +10,8 @@ export const routes =
     {
         path : '/admin/home',
         component : Home,
+        meta: {
+            requireAuth: true
+        }
     }
 ]

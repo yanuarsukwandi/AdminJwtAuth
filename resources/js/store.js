@@ -1,3 +1,4 @@
+import {getLocalUser} from './helpers/auth';
 import Vue from 'vue';
 import Vuex from 'vuex';
 
