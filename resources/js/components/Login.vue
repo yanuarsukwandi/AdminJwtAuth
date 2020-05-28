@@ -6,8 +6,8 @@
         >
           <v-col
             cols="12"
-            sm="4"
-            md="2"
+            sm="8"
+            md="4"
           >
 
             <v-card class="elevation-12">
@@ -68,12 +68,15 @@ import {login} from '../helpers/auth';
     }),
     methods: {
      authenticate(){
+            this.$store.dispatch('login');
             login(this.$data.form)
             .then((res)=>{
+                console.log(res);
+                this.$store.commit('loginSuccess',res)
                 this.$router.push('/admin/home')
             })
             .catch((error)=>{
-
+                console.log(error);
             })
         },
     }

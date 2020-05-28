@@ -11,6 +11,7 @@ window.Vue = require('vue');
 import Vuetify from "vuetify";
 import VueRouter from 'vue-router';
 import {routes} from './routes';
+import store from './store';
 import {Form, HasError, AlertError} from 'vform';
 window.Form = Form
 
@@ -46,5 +47,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#admin',
     router,
+    store,
     vuetify : new Vuetify(),
 });
