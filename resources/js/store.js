@@ -1,17 +1,17 @@
 import {getLocalUser} from './helpers/auth';
 import Vue from 'vue';
 import Vuex from 'vuex';
-import Axios from 'axios';
-import VueRouter from 'vue-router';
+
+const user = getLocalUser();
 
 Vue.use(Vuex);
 
 
 export default new Vuex.Store ({
     state:{
-        currentUser : '',
+        currentUser : user,
         auth_error : null,
-        posts:[]
+        posts:[],
     },
     getters:{
         currentUser(state){
@@ -29,7 +29,7 @@ export default new Vuex.Store ({
             state.currentUser = Object.assign({},payload.user,{token:payload.access_token});
             localStorage.setItem('user', JSON.stringify(state.currentUser))
         },
-        loginFailed(state){
+        loginFailed(state,payload){
             state.auth_error = payload.error;
         },
         logout(state){
@@ -45,13 +45,14 @@ export default new Vuex.Store ({
             context.commit('login')
         },
         getPosts(context){
-            Axios.get('/api/posts')
+            axios.get('/api/posts')
             .then((result)=>{
                 context.commit('updatePosts', result.data.posts)
             }).catch((err)=>{
                 if(err.response.status == 401){
                     context.commit('logout');
-                    router.push('/admin/login')                }
+                    router.push('/admin/login');
+                }
             });
         }
     }
