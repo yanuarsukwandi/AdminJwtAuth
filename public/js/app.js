@@ -2213,6 +2213,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -32155,9 +32156,11 @@ var render = function() {
       _c(
         "v-card-actions",
         [
-          _c("v-btn", { attrs: { color: "primary" } }, [_vm._v("text")]),
+          _c("v-btn", { attrs: { color: "primary" } }, [_vm._v("Back")]),
           _vm._v(" "),
-          _c("v-btn", { attrs: { color: "primary" } }, [_vm._v("text")])
+          _c("v-btn", { attrs: { color: "error" } }, [_vm._v("Delete")]),
+          _vm._v(" "),
+          _c("v-btn", { attrs: { color: "success" } }, [_vm._v("Update")])
         ],
         1
       )

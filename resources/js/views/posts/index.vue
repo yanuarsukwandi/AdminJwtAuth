@@ -16,8 +16,9 @@
             </v-data-table>
         </v-card-text>
         <v-card-actions>
-           <v-btn color="primary">text</v-btn>
-            <v-btn color="primary">text</v-btn>
+             <v-btn color="primary">Back</v-btn>
+            <v-btn color="error">Delete</v-btn>
+           <v-btn color="success">Update</v-btn>
         </v-card-actions>
    </v-card>
 </template>
