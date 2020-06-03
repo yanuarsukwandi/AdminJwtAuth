@@ -118,9 +118,9 @@
     data: () => ({
       drawer: null,
       items: [
-        { icon: 'search', text: 'Home' },
-        { icon: 'mdi-youtube-subscription', text: 'Client' },
-        { icon: 'mdi-history', text: 'History' },
+        { icon: 'home', text: 'Home' },
+        { icon: 'person', text: 'Client' },
+        { icon: 'history', text: 'History' },
       ],
       items2: [
         { picture: 28, text: 'Joseph' },

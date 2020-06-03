@@ -2028,13 +2028,13 @@ __webpack_require__.r(__webpack_exports__);
     return {
       drawer: null,
       items: [{
-        icon: 'search',
+        icon: 'home',
         text: 'Home'
       }, {
-        icon: 'mdi-youtube-subscription',
+        icon: 'person',
         text: 'Client'
       }, {
-        icon: 'mdi-history',
+        icon: 'history',
         text: 'History'
       }],
       items2: [{
@@ -2071,6 +2071,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -32680,7 +32682,9 @@ var render = function() {
         [
           _c("v-card-title", { attrs: { "primary-title": "" } }, [
             _c("div", [
-              _c("h3", { staticClass: "headline mb-0" }, [_vm._v("headline")]),
+              _c("h3", { staticClass: "headline mb-0" }, [
+                _vm._v("This is Home Page")
+              ]),
               _vm._v(" "),
               _c("div", [_vm._v("description")])
             ])
@@ -32689,7 +32693,14 @@ var render = function() {
           _c(
             "v-card-actions",
             [
-              _c("v-btn", { attrs: { color: "primary" } }, [_vm._v("text")]),
+              _c(
+                "router-link",
+                { attrs: { to: "/admin/posts" } },
+                [
+                  _c("v-btn", { attrs: { color: "primary" } }, [_vm._v("Post")])
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "v-btn",
