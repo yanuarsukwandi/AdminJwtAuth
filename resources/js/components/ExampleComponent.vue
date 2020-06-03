@@ -56,7 +56,7 @@
     <v-app-bar
       app
       clipped-left
-      color="red"
+      color="blue darken-3"
       dense
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
@@ -69,7 +69,7 @@
       <v-toolbar-title class="mr-12 align-center">
         <span class="title">Admin Dashboard</span>
       </v-toolbar-title>
-      <v-spacer></v-spacer>
+
       <v-row
         align="center"
         style="max-width: 650px"
@@ -78,11 +78,27 @@
           :append-icon-cb="() => {}"
           placeholder="Search..."
           single-line
-          append-icon="mdi-magnify"
+          append-icon="search"
           color="white"
           hide-details
         ></v-text-field>
       </v-row>
+       <v-spacer></v-spacer>
+       <v-menu left bottom offset-y>
+           <template v-slot:activator="{ on }">
+               <v-avatar v-on="on" size="40px">
+                   <img src="/images/personA.jpg" alt="alt">
+               </v-avatar>
+           </template>
+            <v-list>
+                <v-list-item v-for="item in items" :key="item.key" @click="callback">
+                <v-list-item-icon>
+                    <v-icon>{{item.icon}}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>{{item.text}}</v-list-item-title>
+                </v-list-item>
+            </v-list>
+       </v-menu>
     </v-app-bar>
 
     <v-content>
@@ -102,7 +118,7 @@
     data: () => ({
       drawer: null,
       items: [
-        { icon: 'mdi-trending-up', text: 'Home' },
+        { icon: 'search', text: 'Home' },
         { icon: 'mdi-youtube-subscription', text: 'Client' },
         { icon: 'mdi-history', text: 'History' },
       ],
@@ -119,3 +135,16 @@
     },
   }
 </script>
+<style>
+.theme--dark.v-application {
+    background-image: url('/images/trybackground.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+}
+
+.theme--dark.v-navigation-drawer {
+    background-color: #363636ad;
+}
+</style>

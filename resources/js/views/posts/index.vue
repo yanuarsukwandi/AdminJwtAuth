@@ -16,7 +16,10 @@
             </v-data-table>
         </v-card-text>
         <v-card-actions>
-             <v-btn color="primary">Back</v-btn>
+            <router-link to="/admin/home">
+                <v-btn color="primary">Back</v-btn>
+            </router-link>
+            
             <v-btn color="error">Delete</v-btn>
            <v-btn color="success">Update</v-btn>
         </v-card-actions>
