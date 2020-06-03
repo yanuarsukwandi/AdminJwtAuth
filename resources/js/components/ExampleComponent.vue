@@ -41,13 +41,13 @@
           link
         >
           <v-list-item-action>
-            <v-icon color="grey darken-1">mdi-plus-circle-outline</v-icon>
+            <v-icon color="grey darken-1">settings</v-icon>
           </v-list-item-action>
           <v-list-item-title class="grey--text text--darken-1">Settings</v-list-item-title>
         </v-list-item>
         <v-list-item link>
           <v-list-item-action>
-            <v-icon color="grey darken-1">mdi-settings</v-icon>
+
           </v-list-item-action>
         </v-list-item>
       </v-list>
@@ -59,13 +59,7 @@
       color="blue darken-3"
       dense
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-icon
-        class="mx-4"
-        large
-      >
-        mdi-youtube
-      </v-icon>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer">menu</v-app-bar-nav-icon>
       <v-toolbar-title class="mr-12 align-center">
         <span class="title">Admin Dashboard</span>
       </v-toolbar-title>
@@ -96,6 +90,13 @@
                     <v-icon>{{item.icon}}</v-icon>
                 </v-list-item-icon>
                 <v-list-item-title>{{item.text}}</v-list-item-title>
+                </v-list-item>
+                <v-divider></v-divider>
+                <v-list-item @click="callback">
+                    <v-list-item-icon>
+                     <v-icon color="red">logout</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title>LOGOUT</v-list-item-title>
                 </v-list-item>
             </v-list>
        </v-menu>

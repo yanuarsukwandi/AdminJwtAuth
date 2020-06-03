@@ -2019,6 +2019,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   //name : 'main-app',
   props: {
@@ -2071,6 +2072,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -32509,7 +32511,7 @@ var render = function() {
                     "v-list-item-action",
                     [
                       _c("v-icon", { attrs: { color: "grey darken-1" } }, [
-                        _vm._v("mdi-plus-circle-outline")
+                        _vm._v("settings")
                       ])
                     ],
                     1
@@ -32527,17 +32529,7 @@ var render = function() {
               _c(
                 "v-list-item",
                 { attrs: { link: "" } },
-                [
-                  _c(
-                    "v-list-item-action",
-                    [
-                      _c("v-icon", { attrs: { color: "grey darken-1" } }, [
-                        _vm._v("mdi-settings")
-                      ])
-                    ],
-                    1
-                  )
-                ],
+                [_c("v-list-item-action")],
                 1
               )
             ],
@@ -32558,18 +32550,18 @@ var render = function() {
           }
         },
         [
-          _c("v-app-bar-nav-icon", {
-            on: {
-              click: function($event) {
-                $event.stopPropagation()
-                _vm.drawer = !_vm.drawer
+          _c(
+            "v-app-bar-nav-icon",
+            {
+              on: {
+                click: function($event) {
+                  $event.stopPropagation()
+                  _vm.drawer = !_vm.drawer
+                }
               }
-            }
-          }),
-          _vm._v(" "),
-          _c("v-icon", { staticClass: "mx-4", attrs: { large: "" } }, [
-            _vm._v("\n      mdi-youtube\n    ")
-          ]),
+            },
+            [_vm._v("menu")]
+          ),
           _vm._v(" "),
           _c("v-toolbar-title", { staticClass: "mr-12 align-center" }, [
             _c("span", { staticClass: "title" }, [_vm._v("Admin Dashboard")])
@@ -32622,23 +32614,46 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-list",
-                _vm._l(_vm.items, function(item) {
-                  return _c(
+                [
+                  _vm._l(_vm.items, function(item) {
+                    return _c(
+                      "v-list-item",
+                      { key: item.key, on: { click: _vm.callback } },
+                      [
+                        _c(
+                          "v-list-item-icon",
+                          [_c("v-icon", [_vm._v(_vm._s(item.icon))])],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("v-list-item-title", [_vm._v(_vm._s(item.text))])
+                      ],
+                      1
+                    )
+                  }),
+                  _vm._v(" "),
+                  _c("v-divider"),
+                  _vm._v(" "),
+                  _c(
                     "v-list-item",
-                    { key: item.key, on: { click: _vm.callback } },
+                    { on: { click: _vm.callback } },
                     [
                       _c(
                         "v-list-item-icon",
-                        [_c("v-icon", [_vm._v(_vm._s(item.icon))])],
+                        [
+                          _c("v-icon", { attrs: { color: "red" } }, [
+                            _vm._v("logout")
+                          ])
+                        ],
                         1
                       ),
                       _vm._v(" "),
-                      _c("v-list-item-title", [_vm._v(_vm._s(item.text))])
+                      _c("v-list-item-title", [_vm._v("LOGOUT")])
                     ],
                     1
                   )
-                }),
-                1
+                ],
+                2
               )
             ],
             1

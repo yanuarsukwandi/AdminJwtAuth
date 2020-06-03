@@ -11,6 +11,7 @@
             <router-link to="/admin/posts">
             <v-btn color="primary">Post</v-btn>
             </router-link>
+            
             <v-btn @click="logout"  color="primary">Logout</v-btn>
         </v-card-actions>
     </v-card>
