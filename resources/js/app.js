@@ -16,6 +16,9 @@ import {initialize} from './helpers/general';
 import {Form, HasError, AlertError} from 'vform';
 window.Form = Form
 
+import Swal from 'sweetalert2'
+
+window.Swal = require('sweetalert2')
 
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
@@ -46,6 +49,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
  initialize(store,router);
+ window.Fire = new Vue()
 const app = new Vue({
     el: '#admin',
     router,
