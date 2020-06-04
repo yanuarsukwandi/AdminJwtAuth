@@ -9,7 +9,7 @@
         <v-list-item
           v-for="item in items"
           :key="item.text"
-          link
+          @click="pushLink(item.link)"
         >
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -41,9 +41,9 @@
           link
         >
           <v-list-item-action>
-            <v-icon color="grey darken-1">settings</v-icon>
+            <v-icon color="grey darken-1">warning</v-icon>
           </v-list-item-action>
-          <v-list-item-title class="grey--text text--darken-1">Settings</v-list-item-title>
+          <v-list-item-title class="grey--text text--darken-1">Credits</v-list-item-title>
         </v-list-item>
         <v-list-item link>
           <v-list-item-action>
@@ -78,6 +78,14 @@
         ></v-text-field>
       </v-row>
        <v-spacer></v-spacer>
+       <v-btn icon @click="changeTheme">
+         <v-icon v-if="this.$vuetify.theme.dark == false">
+           brightness_3
+         </v-icon>
+         <v-icon v-else>
+           wb_sunny
+         </v-icon>
+       </v-btn>
        <v-menu left bottom offset-y>
            <template v-slot:activator="{ on }">
                <v-avatar v-on="on" size="40px">
@@ -85,14 +93,14 @@
                </v-avatar>
            </template>
             <v-list>
-                <v-list-item v-for="item in items" :key="item.key" @click="callback">
+                <v-list-item v-for="item in items" :key="item.key" @click="pushLink(item.link)">
                 <v-list-item-icon>
                     <v-icon>{{item.icon}}</v-icon>
                 </v-list-item-icon>
                 <v-list-item-title>{{item.text}}</v-list-item-title>
                 </v-list-item>
                 <v-divider></v-divider>
-                <v-list-item @click="callback">
+                <v-list-item @click="logout">
                     <v-list-item-icon>
                      <v-icon color="red">logout</v-icon>
                     </v-list-item-icon>
@@ -119,8 +127,10 @@
     data: () => ({
       drawer: null,
       items: [
-        { icon: 'home', text: 'Home' },
-        { icon: 'person', text: 'Client' },
+        { icon: 'dashboard', text: 'Home', link:'/admin/home'},
+        { icon: 'folder', text: 'Pages'},
+        {icon:'description', text:'Posts', link:'/admin/posts'},
+        { icon: 'settings', text: 'Settings'},
         { icon: 'history', text: 'History' },
       ],
       items2: [
@@ -131,6 +141,18 @@
         { picture: 78, text: 'MKBHD' },
       ],
     }),
+    methods:{
+      logout(){
+        this.$store.commit('logout');
+        this.$router.push('/admin/login')
+      },
+      changeTheme(){
+        this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+      },
+      pushLink(link){
+        this.$router.push(link)
+      }
+    },
     created () {
       this.$vuetify.theme.dark = true
     },
@@ -147,5 +169,15 @@
 
 .theme--dark.v-navigation-drawer {
     background-color: #363636ad;
+}
+
+.theme--dark .v-card{
+  background-color: rgba(66, 66, 66, .5);
+  color: #fff;
+}
+
+.theme--dark .v-data-table{
+  background-color: rgba(66, 66, 66, .5);
+  color: #fff;
 }
 </style>

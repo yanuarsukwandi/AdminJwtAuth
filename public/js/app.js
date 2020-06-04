@@ -2020,6 +2020,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   //name : 'main-app',
   props: {
@@ -2029,11 +2037,19 @@ __webpack_require__.r(__webpack_exports__);
     return {
       drawer: null,
       items: [{
-        icon: 'home',
-        text: 'Home'
+        icon: 'dashboard',
+        text: 'Home',
+        link: '/admin/home'
       }, {
-        icon: 'person',
-        text: 'Client'
+        icon: 'folder',
+        text: 'Pages'
+      }, {
+        icon: 'description',
+        text: 'Posts',
+        link: '/admin/posts'
+      }, {
+        icon: 'settings',
+        text: 'Settings'
       }, {
         icon: 'history',
         text: 'History'
@@ -2055,6 +2071,18 @@ __webpack_require__.r(__webpack_exports__);
         text: 'MKBHD'
       }]
     };
+  },
+  methods: {
+    logout: function logout() {
+      this.$store.commit('logout');
+      this.$router.push('/admin/login');
+    },
+    changeTheme: function changeTheme() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+    },
+    pushLink: function pushLink(link) {
+      this.$router.push(link);
+    }
   },
   created: function created() {
     this.$vuetify.theme.dark = true;
@@ -2280,7 +2308,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.theme--dark.v-application {\n    background-image: url('/images/trybackground.png');\n    background-position: center;\n    background-repeat: no-repeat;\n    background-size: cover;\n    color: #fff;\n}\n.theme--dark.v-navigation-drawer {\n    background-color: #363636ad;\n}\n", ""]);
+exports.push([module.i, "\n.theme--dark.v-application {\n    background-image: url('/images/trybackground.png');\n    background-position: center;\n    background-repeat: no-repeat;\n    background-size: cover;\n    color: #fff;\n}\n.theme--dark.v-navigation-drawer {\n    background-color: #363636ad;\n}\n.theme--dark .v-card{\n  background-color: rgba(66, 66, 66, .5);\n  color: #fff;\n}\n.theme--dark .v-data-table{\n  background-color: rgba(66, 66, 66, .5);\n  color: #fff;\n}\n", ""]);
 
 // exports
 
@@ -32442,7 +32470,14 @@ var render = function() {
               _vm._l(_vm.items, function(item) {
                 return _c(
                   "v-list-item",
-                  { key: item.text, attrs: { link: "" } },
+                  {
+                    key: item.text,
+                    on: {
+                      click: function($event) {
+                        return _vm.pushLink(item.link)
+                      }
+                    }
+                  },
                   [
                     _c(
                       "v-list-item-action",
@@ -32511,7 +32546,7 @@ var render = function() {
                     "v-list-item-action",
                     [
                       _c("v-icon", { attrs: { color: "grey darken-1" } }, [
-                        _vm._v("settings")
+                        _vm._v("warning")
                       ])
                     ],
                     1
@@ -32520,7 +32555,7 @@ var render = function() {
                   _c(
                     "v-list-item-title",
                     { staticClass: "grey--text text--darken-1" },
-                    [_vm._v("Settings")]
+                    [_vm._v("Credits")]
                   )
                 ],
                 1
@@ -32591,6 +32626,17 @@ var render = function() {
           _c("v-spacer"),
           _vm._v(" "),
           _c(
+            "v-btn",
+            { attrs: { icon: "" }, on: { click: _vm.changeTheme } },
+            [
+              this.$vuetify.theme.dark == false
+                ? _c("v-icon", [_vm._v("\n         brightness_3\n       ")])
+                : _c("v-icon", [_vm._v("\n         wb_sunny\n       ")])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
             "v-menu",
             {
               attrs: { left: "", bottom: "", "offset-y": "" },
@@ -32618,7 +32664,14 @@ var render = function() {
                   _vm._l(_vm.items, function(item) {
                     return _c(
                       "v-list-item",
-                      { key: item.key, on: { click: _vm.callback } },
+                      {
+                        key: item.key,
+                        on: {
+                          click: function($event) {
+                            return _vm.pushLink(item.link)
+                          }
+                        }
+                      },
                       [
                         _c(
                           "v-list-item-icon",
@@ -32636,7 +32689,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "v-list-item",
-                    { on: { click: _vm.callback } },
+                    { on: { click: _vm.logout } },
                     [
                       _c(
                         "v-list-item-icon",
