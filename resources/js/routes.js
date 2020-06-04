@@ -1,7 +1,8 @@
 
 import Login from './components/Login.vue';
 import Home from './components/Home.vue';
-import Posts from './views/posts/index.vue'
+import Posts from './views/posts/index.vue';
+import Post from './views/posts/post.vue';
 export const routes =
 [
     {
@@ -22,6 +23,14 @@ export const routes =
             requireAuth: true
         }
     },
+    {
+        path: '/admin/post/:id?',
+        component: Post,
+        meta: {
+            requireAuth: true
+        }
+    },
+
 
 
 ]

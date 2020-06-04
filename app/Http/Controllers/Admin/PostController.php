@@ -37,7 +37,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $title = $request->title;
+        $body = $request->body;
+
+
+        Post::create([
+            'title' => $title,
+            'body' => $body,
+        ]);
     }
 
     /**
@@ -59,7 +66,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return response()->json(['post'=>$post]);
     }
 
     /**
@@ -71,7 +79,11 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->save();
+
     }
 
     /**

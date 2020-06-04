@@ -17,7 +17,7 @@
                 <div class="text-center d-flex align-center">
                     <v-tooltip top>
                         <template v-slot:activator="{on}">
-                            <v-btn class="v-btn-simple" color="success" icon v-on="on">
+                            <v-btn class="v-btn-simple" color="success" icon v-on="on" @click="editPost(item.id)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
                         </template>
@@ -38,8 +38,8 @@
             </v-data-table>
         </v-card-text>
         <v-card-actions>
-            <router-link to="/admin/home">
-                <v-btn color="primary">Back</v-btn>
+            <router-link to="/admin/post/">
+                <v-btn outlined color="primary">Add New</v-btn>
             </router-link>
         </v-card-actions>
    </v-card>
@@ -100,6 +100,9 @@ export default {
         },
         refreshPost(){
             this.$store.dispatch('getPosts')
+        },
+        editPost(id){
+            this.$router.push('/admin/post/'+ id)
         }
     },
     computed:{
@@ -118,6 +121,7 @@ export default {
         Fire.$on('afterCreate', ()=>{
             this.refreshPost();
         })
+         this.refreshPost();
     }
 }
 </script>
